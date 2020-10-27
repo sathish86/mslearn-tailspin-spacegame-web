@@ -1,5 +1,10 @@
 trigger:
-- '*'
+  branches:
+    include:
+    - release/*
+  paths:
+    exclude:
+    - doc/*
 
 pool:
   vmImage: 'ubuntu-16.04'
