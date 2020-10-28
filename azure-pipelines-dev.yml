@@ -43,7 +43,7 @@ steps:
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
-    
+
 - template: templates/build.yml
   parameters:
     buildConfiguration: 'Debug'
@@ -52,6 +52,30 @@ steps:
   parameters:
     buildConfiguration: 'Release'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
-  condition: succeeded()
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Publish Artifact: drop'
+#   condition: succeeded()
+
+- task: JFrog.jfrog-artifactory-vsts-extension.artifactory-generic-upload.ArtifactoryGenericUpload@2
+  displayName: 'Artifactory Generic Upload'
+  inputs:
+    artifactoryService: 'jfrog_artifacts'
+    fileSpec: |
+     {
+       "files": [
+         {
+           "pattern": "*.zip",
+           "target": "tcs-bt-dev-local"
+         }
+       ]
+     }
+    collectBuildInfo: true
+    includeEnvVars: true
+    dryRun: true
+
+
+- task: JFrog.jfrog-artifactory-vsts-extension.artifactory-publish-build-info.ArtifactoryPublishBuildInfo@1
+  displayName: 'Artifactory Publish Build Info'
+  inputs:
+    artifactoryService: 'jfrog_artifacts'
+
