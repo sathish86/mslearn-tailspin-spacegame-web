@@ -71,7 +71,6 @@ steps:
      }
     collectBuildInfo: true
     includeEnvVars: true
-    dryRun: true
 
 
 - task: JFrog.jfrog-artifactory-vsts-extension.artifactory-publish-build-info.ArtifactoryPublishBuildInfo@1
