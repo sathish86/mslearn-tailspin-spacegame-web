@@ -72,6 +72,7 @@ steps:
     collectBuildInfo: true
     includeEnvVars: true
     failNoOp: true
+    module: "Tailspin.SpaceGame.Web.v1.0.0"
 
 
 - task: JFrog.jfrog-artifactory-vsts-extension.artifactory-publish-build-info.ArtifactoryPublishBuildInfo@1
