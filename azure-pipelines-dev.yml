@@ -65,7 +65,7 @@ steps:
        "files": [
          {
            "pattern": "$(Build.ArtifactStagingDirectory)/$(buildConfiguration)/*Web.zip",
-           "target": "tcs-bt-dev-local/$(Build.Number)"
+           "target": "tcs-bt-dev-local"
          }
        ]
      }
